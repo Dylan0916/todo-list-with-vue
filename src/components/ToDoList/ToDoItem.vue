@@ -14,6 +14,7 @@ interface Props {
 
 const props = defineProps<Props>();
 const { item } = toRefs(props);
+const inputRef = ref(null);
 const isEditing = ref(false);
 const text = ref(item.value.text);
 const listItemTextClass = computed(() => ({
@@ -21,17 +22,32 @@ const listItemTextClass = computed(() => ({
   'list-item-text__is-finished': item.value.isFinished,
 }));
 
+function onItemClick() {
+  if (!isEditing.value) {
+    toDoListStore.toggleFinished(item.value.id);
+  }
+}
+
 function handleEdit() {
   if (isEditing.value) {
     toDoListStore.editToDo(item.value.id, text.value);
+  } else {
+    // inputRef.value.focus();
   }
   isEditing.value = !isEditing.value;
 }
 </script>
 
 <template>
-  <div class="list-item" @click="toDoListStore.toggleFinished(item.id)">
-    <input class="edit-input" type="text" v-model="text" v-show="isEditing" />
+  <div class="list-item" @click.self="onItemClick">
+    <input
+      ref="inputRef"
+      type="text"
+      class="edit-input"
+      v-model="text"
+      v-show="isEditing"
+      @keypress.enter="handleEdit"
+    />
     <p :class="listItemTextClass" v-show="!isEditing">{{ text }}</p>
     <Actions
       :id="item.id"

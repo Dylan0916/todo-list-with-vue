@@ -14,7 +14,12 @@ function handleSubmitValue() {
 
 <template>
   <div class="add-item-input-box">
-    <input type="text" class="input" v-model="inputText" />
+    <input
+      type="text"
+      class="input"
+      v-model="inputText"
+      @keypress.enter="handleSubmitValue"
+    />
     <button class="add-item-btn" @click="handleSubmitValue">ADD</button>
   </div>
 </template>
