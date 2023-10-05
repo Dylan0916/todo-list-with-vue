@@ -30,7 +30,7 @@ function handleEdit() {
 </script>
 
 <template>
-  <div class="list-item">
+  <div class="list-item" @click="toDoListStore.toggleFinished(item.id)">
     <input class="edit-input" type="text" v-model="text" v-show="isEditing" />
     <p :class="listItemTextClass" v-show="!isEditing">{{ text }}</p>
     <Actions

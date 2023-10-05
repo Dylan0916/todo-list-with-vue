@@ -23,10 +23,10 @@ const { id, isFinished, onEidButtonClick } = toRefs(props);
       type="checkbox"
       :checked="isFinished"
       :disabled="isEditing"
-      @change="toDoListStore.toggleFinished(id)"
+      @click.stop="toDoListStore.toggleFinished(id)"
     />
-    <button class="eid-button" @click="onEidButtonClick">EDIT</button>
-    <button class="delete-button" @click="toDoListStore.deleteToDo(id)">
+    <button class="eid-button" @click.stop="onEidButtonClick">EDIT</button>
+    <button class="delete-button" @click.stop="toDoListStore.deleteToDo(id)">
       DELETE
     </button>
   </div>
