@@ -1,10 +1,20 @@
 <script setup lang="ts">
-function handleSubmitValue() {}
+import { ref } from 'vue';
+
+import useToDoListStore from '@/stores/toDoListStore';
+
+const toDoListStore = useToDoListStore();
+const inputText = ref('');
+
+function handleSubmitValue() {
+  toDoListStore.addToDo(inputText.value);
+  inputText.value = '';
+}
 </script>
 
 <template>
   <div class="add-item-input-box">
-    <input type="text" class="input" />
+    <input type="text" class="input" v-model="inputText" />
     <button class="add-item-btn" @click="handleSubmitValue">ADD</button>
   </div>
 </template>

@@ -1,8 +1,12 @@
 <script setup lang="ts">
-import { toRefs, computed } from 'vue';
+import { ref, toRefs, computed } from 'vue';
+
+import { Item } from '@/types/toDoList';
+import useToDoListStore from '@/stores/toDoListStore';
 
 import Actions from './Actions.vue';
-import { Item } from '@/types/toDoList';
+
+const toDoListStore = useToDoListStore();
 
 interface Props {
   item: Item;
@@ -10,22 +14,29 @@ interface Props {
 
 const props = defineProps<Props>();
 const { item } = toRefs(props);
+const isEditing = ref(false);
+const text = ref(item.value.text);
 const listItemTextClass = computed(() => ({
   'list-item-text': true,
   'list-item-text__is-finished': item.value.isFinished,
 }));
 
 function handleEdit() {
-  console.log(item);
+  if (isEditing.value) {
+    toDoListStore.editToDo(item.value.id, text.value);
+  }
+  isEditing.value = !isEditing.value;
 }
 </script>
 
 <template>
   <div class="list-item">
-    <p :class="listItemTextClass">{{ item.text }}</p>
+    <input class="edit-input" type="text" v-model="text" v-show="isEditing" />
+    <p :class="listItemTextClass" v-show="!isEditing">{{ text }}</p>
     <Actions
       :id="item.id"
       :isFinished="item.isFinished"
+      :isEditing="isEditing"
       :onEidButtonClick="handleEdit"
     />
   </div>
@@ -40,6 +51,12 @@ function handleEdit() {
   background-color: #f5f5f5;
   border-radius: 3px;
   cursor: pointer;
+}
+
+.edit-input {
+  flex: 1;
+  height: 24px;
+  margin: 16px 0;
 }
 
 .list-item-text {

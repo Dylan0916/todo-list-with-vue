@@ -2,11 +2,14 @@
 import { toRefs } from 'vue';
 
 import { Item } from '@/types/toDoList';
+import useToDoListStore from '@/stores/toDoListStore';
+
+const toDoListStore = useToDoListStore();
 
 interface Props {
   id: Item['id'];
   isFinished: Item['isFinished'];
-  // isEditing: boolean;
+  isEditing: boolean;
   onEidButtonClick: () => void;
 }
 
@@ -16,9 +19,16 @@ const { id, isFinished, onEidButtonClick } = toRefs(props);
 
 <template>
   <div class="actions-wrapper">
-    <input type="checkbox" :checked="isFinished" />
+    <input
+      type="checkbox"
+      :checked="isFinished"
+      :disabled="isEditing"
+      @change="toDoListStore.toggleFinished(id)"
+    />
     <button class="eid-button" @click="onEidButtonClick">EDIT</button>
-    <button class="delete-button">DELETE</button>
+    <button class="delete-button" @click="toDoListStore.deleteToDo(id)">
+      DELETE
+    </button>
   </div>
 </template>
 
@@ -26,6 +36,7 @@ const { id, isFinished, onEidButtonClick } = toRefs(props);
 .actions-wrapper {
   display: flex;
   align-items: center;
+  margin-left: 16px;
 }
 
 .eid-button {
