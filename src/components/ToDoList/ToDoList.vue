@@ -7,9 +7,9 @@ const toDoListStore = useToDoListStore();
 </script>
 
 <template>
-  <div class="card-content">
-    <p class="to-do-list-header">LIST OF WORKS TODO:</p>
-    <div class="list">
+  <div class="border border-black p-4">
+    <p class="text-center mb-4">LIST OF WORKS TODO:</p>
+    <div>
       <ToDoItem
         v-for="item in toDoListStore.toDoList"
         :key="item.id"
@@ -19,13 +19,4 @@ const toDoListStore = useToDoListStore();
   </div>
 </template>
 
-<style scoped>
-.card-content {
-  border: solid 1px;
-  padding: 16px;
-}
-
-.to-do-list-header {
-  text-align: center;
-}
-</style>
+<style scoped></style>

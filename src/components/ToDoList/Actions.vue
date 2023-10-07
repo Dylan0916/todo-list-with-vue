@@ -18,30 +18,20 @@ const { id, isFinished, onEidButtonClick } = toRefs(props);
 </script>
 
 <template>
-  <div class="actions-wrapper">
+  <div class="flex items-center ml-4">
     <input
       type="checkbox"
       :checked="isFinished"
       :disabled="isEditing"
       @click="toDoListStore.toggleFinished(id)"
     />
-    <button class="eid-button" @click="onEidButtonClick" :disabled="isFinished">
+    <button class="btn mx-2" @click="onEidButtonClick" :disabled="isFinished">
       EDIT
     </button>
-    <button class="delete-button" @click="toDoListStore.deleteToDo(id)">
+    <button class="delete-button btn" @click="toDoListStore.deleteToDo(id)">
       DELETE
     </button>
   </div>
 </template>
 
-<style scoped>
-.actions-wrapper {
-  display: flex;
-  align-items: center;
-  margin-left: 16px;
-}
-
-.eid-button {
-  margin: 0 8px;
-}
-</style>
+<style scoped></style>

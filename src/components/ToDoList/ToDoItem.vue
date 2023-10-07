@@ -18,8 +18,10 @@ const inputRef = ref(null);
 const isEditing = ref(false);
 const text = ref(item.value.text);
 const listItemTextClass = computed(() => ({
-  'list-item-text': true,
-  'list-item-text__is-finished': item.value.isFinished,
+  'flex-1': true,
+  'text-left': true,
+  'line-through': item.value.isFinished,
+  'opacity-40': item.value.isFinished,
 }));
 
 function onItemClick() {
@@ -39,11 +41,14 @@ function handleEdit() {
 </script>
 
 <template>
-  <div class="list-item" @click.self="onItemClick">
+  <div
+    class="py-3 px-2 my-2 flex items-center bg-gray-100 rounded cursor-pointer"
+    @click.self="onItemClick"
+  >
     <input
       ref="inputRef"
       type="text"
-      class="edit-input"
+      class="input flex-1 h-6"
       v-model="text"
       v-show="isEditing"
       @keypress.enter="handleEdit"
@@ -58,32 +63,4 @@ function handleEdit() {
   </div>
 </template>
 
-<style scoped>
-.list-item {
-  padding: 4px 8px;
-  margin: 8px 0;
-  display: flex;
-  align-items: center;
-  background-color: #f5f5f5;
-  border-radius: 3px;
-  cursor: pointer;
-}
-
-.edit-input {
-  flex: 1;
-  height: 24px;
-  margin: 16px 0;
-}
-
-.list-item-text {
-  flex: 1;
-  text-align: left;
-  text-decoration: none;
-  opacity: 1;
-}
-
-.list-item-text__is-finished {
-  text-decoration: line-through;
-  opacity: 0.4;
-}
-</style>
+<style scoped></style>

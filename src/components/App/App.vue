@@ -4,16 +4,10 @@ import ToDoList from '../ToDoList';
 </script>
 
 <template>
-  <div class="card">
+  <div class="w-full max-w-5xl m-auto">
     <ToDoHeader />
     <ToDoList />
   </div>
 </template>
 
-<style scoped>
-.card {
-  width: 100%;
-  max-width: 1024px;
-  margin: auto;
-}
-</style>
+<style scoped></style>

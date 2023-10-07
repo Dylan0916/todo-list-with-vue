@@ -3,15 +3,10 @@ import AddItemInput from './AddItemInput.vue';
 </script>
 
 <template>
-  <div class="to-do-header-box">
-    <h2>TODO LIST</h2>
+  <div class="text-center pt-8 pb-6 px-20">
+    <h2 class="mb-2">TODO LIST</h2>
     <AddItemInput />
   </div>
 </template>
 
-<style scoped>
-.to-do-header-box {
-  text-align: center;
-  padding: 32px 72px 24px;
-}
-</style>
+<style scoped></style>
