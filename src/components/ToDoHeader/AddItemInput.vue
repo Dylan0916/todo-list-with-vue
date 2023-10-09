@@ -15,6 +15,7 @@ function handleSubmitValue() {
 <template>
   <div class="flex justify-center items-center">
     <input
+      data-test="add-todo-input"
       type="text"
       class="input flex-1 h-8"
       v-model="inputText"
