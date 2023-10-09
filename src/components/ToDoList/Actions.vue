@@ -10,11 +10,10 @@ interface Props {
   id: Item['id'];
   isFinished: Item['isFinished'];
   isEditing: boolean;
-  onEidButtonClick: () => void;
 }
 
 const props = defineProps<Props>();
-const { id, isFinished, onEidButtonClick } = toRefs(props);
+const { id, isFinished } = toRefs(props);
 </script>
 
 <template>
@@ -28,7 +27,7 @@ const { id, isFinished, onEidButtonClick } = toRefs(props);
     />
     <button
       class="btn mx-2"
-      @click="onEidButtonClick"
+      @click="$emit('onEidButtonClick')"
       :disabled="isFinished"
       data-test="edit-btn"
     >

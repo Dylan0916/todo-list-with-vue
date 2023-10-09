@@ -9,7 +9,6 @@ describe('Actions', () => {
     id: '0',
     isFinished: false,
     isEditing: false,
-    onEidButtonClick: vi.fn(),
   };
 
   const createWrapper = (testProps = {}) => {
@@ -20,10 +19,6 @@ describe('Actions', () => {
       },
     });
   };
-
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
 
   describe('finished checkbox', () => {
     it('should call toggleFinished when the checkbox is clicked', async () => {
@@ -76,15 +71,15 @@ describe('Actions', () => {
   });
 
   describe('edit btn', () => {
-    it('should call onEidButtonClick when the button is clicked', async () => {
+    it('should emit onEidButtonClick when the button is clicked', async () => {
       const wrapper = createWrapper();
       const editBtn = wrapper.get('[data-test="edit-btn"]');
 
-      expect(defaultProps.onEidButtonClick).not.toBeCalled();
+      expect(wrapper.emitted()).not.toHaveProperty('onEidButtonClick');
 
       await editBtn.trigger('click');
 
-      expect(defaultProps.onEidButtonClick).toBeCalled();
+      expect(wrapper.emitted()).toHaveProperty('onEidButtonClick');
     });
 
     it('should disabled if props.isFinished is "true"', () => {

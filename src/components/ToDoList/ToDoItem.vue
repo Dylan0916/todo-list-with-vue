@@ -44,6 +44,7 @@ function handleEdit() {
   <div
     class="py-3 px-2 my-2 flex items-center bg-gray-100 rounded cursor-pointer"
     @click.self="onItemClick"
+    data-test="item-wrapper"
   >
     <input
       ref="inputRef"
@@ -52,13 +53,16 @@ function handleEdit() {
       v-model="text"
       v-show="isEditing"
       @keypress.enter="handleEdit"
+      data-test="edit-input"
     />
-    <p :class="listItemTextClass" v-show="!isEditing">{{ text }}</p>
+    <p :class="listItemTextClass" v-show="!isEditing" data-test="item-text">
+      {{ text }}
+    </p>
     <Actions
       :id="item.id"
       :isFinished="item.isFinished"
       :isEditing="isEditing"
-      :onEidButtonClick="handleEdit"
+      @onEidButtonClick="handleEdit"
     />
   </div>
 </template>
