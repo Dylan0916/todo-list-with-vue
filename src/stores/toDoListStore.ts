@@ -1,15 +1,15 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
 
-const initState = [
+export const createInitState = () => [
   { id: '0', text: 'a', isFinished: false },
   { id: '1', text: 'b', isFinished: true },
   { id: '2', text: 'c', isFinished: false },
 ];
-let uniqueId = initState.length;
 
 const useToDoListStore = defineStore('toDoList', () => {
-  const toDoList = ref(initState);
+  const toDoList = ref(createInitState());
+  const uniqueId = ref(toDoList.value.length);
 
   const addToDo = (text: string) => {
     const trimmedText = text.trim();
@@ -17,7 +17,7 @@ const useToDoListStore = defineStore('toDoList', () => {
     if (!trimmedText) return;
 
     const newToDo = {
-      id: `${uniqueId++}`,
+      id: `${uniqueId.value++}`,
       text: trimmedText,
       isFinished: false,
     };
