@@ -24,11 +24,21 @@ const { id, isFinished, onEidButtonClick } = toRefs(props);
       :checked="isFinished"
       :disabled="isEditing"
       @click="toDoListStore.toggleFinished(id)"
+      data-test="finished-checkbox"
     />
-    <button class="btn mx-2" @click="onEidButtonClick" :disabled="isFinished">
+    <button
+      class="btn mx-2"
+      @click="onEidButtonClick"
+      :disabled="isFinished"
+      data-test="edit-btn"
+    >
       EDIT
     </button>
-    <button class="delete-button btn" @click="toDoListStore.deleteToDo(id)">
+    <button
+      class="delete-button btn"
+      @click="toDoListStore.deleteToDo(id)"
+      data-test="delete-btn"
+    >
       DELETE
     </button>
   </div>
