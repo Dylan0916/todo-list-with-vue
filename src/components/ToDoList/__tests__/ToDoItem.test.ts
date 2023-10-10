@@ -1,6 +1,5 @@
-import { mount } from '@vue/test-utils';
+import { mount, type ComponentMountingOptions } from '@vue/test-utils';
 import { createTestingPinia } from '@pinia/testing';
-import { GlobalMountOptions } from 'node_modules/@vue/test-utils/dist/types';
 
 import useToDoListStore from '@/stores/toDoListStore';
 import ToDoItem from '../ToDoItem.vue';
@@ -15,16 +14,15 @@ describe('ToDoItem', () => {
     item,
   };
 
-  const createWrapper = ({
-    testProps = {},
-    global = {},
-  }: { testProps?: any; global?: GlobalMountOptions } = {}) => {
+  const createWrapper = (
+    opts: ComponentMountingOptions<typeof ToDoItem> = {}
+  ) => {
     return mount(ToDoItem, {
-      props: { ...defaultProps, ...testProps },
+      props: { ...defaultProps, ...opts.props },
       attachTo: document.body,
       global: {
         plugins: [createTestingPinia()],
-        ...global,
+        ...opts.global,
       },
     });
   };
