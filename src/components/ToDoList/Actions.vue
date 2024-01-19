@@ -42,5 +42,3 @@ const { id, isFinished } = toRefs(props);
     </button>
   </div>
 </template>
-
-<style scoped></style>

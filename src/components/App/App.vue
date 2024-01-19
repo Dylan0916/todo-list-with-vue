@@ -9,5 +9,3 @@ import ToDoList from '../ToDoList';
     <ToDoList />
   </div>
 </template>
-
-<style scoped></style>

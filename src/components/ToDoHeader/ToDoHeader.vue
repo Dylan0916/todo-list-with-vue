@@ -8,5 +8,3 @@ import AddItemInput from './AddItemInput.vue';
     <AddItemInput />
   </div>
 </template>
-
-<style scoped></style>

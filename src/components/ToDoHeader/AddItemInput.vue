@@ -24,5 +24,3 @@ function handleSubmitValue() {
     <button class="ml-2 btn" @click="handleSubmitValue">ADD</button>
   </div>
 </template>
-
-<style scoped></style>

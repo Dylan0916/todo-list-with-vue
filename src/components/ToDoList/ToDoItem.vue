@@ -33,9 +33,8 @@ function onItemClick() {
 function handleEdit() {
   if (isEditing.value) {
     toDoListStore.editToDo(item.value.id, text.value);
-  } else {
-    // inputRef.value.focus();
   }
+
   isEditing.value = !isEditing.value;
 }
 </script>
@@ -66,5 +65,3 @@ function handleEdit() {
     />
   </div>
 </template>
-
-<style scoped></style>
